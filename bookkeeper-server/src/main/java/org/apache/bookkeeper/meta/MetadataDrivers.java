@@ -130,6 +130,7 @@ public final class MetadataDrivers {
                 log.warn("Failed to load metadata client driver {}", driverClsName, e);
             }
         }
+        log.info("lan.dev.clientDrivers:{}",clientDrivers.keySet());
     }
 
     private static void loadInitialBookieDrivers() {
@@ -157,6 +158,7 @@ public final class MetadataDrivers {
                 log.warn("Failed to load metadata bookie driver {}", driverClsName, e);
             }
         }
+        log.info("lan.dev.metadata.driver:{}",bookieDrivers.keySet());
     }
 
     /**
@@ -231,6 +233,7 @@ public final class MetadataDrivers {
     public static MetadataClientDriver getClientDriver(String scheme) {
         checkNotNull(scheme, "Client Driver Scheme is null");
         MetadataClientDriverInfo driverInfo = clientDrivers.get(scheme.toLowerCase());
+        log.info("clientDrivers:{}",clientDrivers.keySet());
         if (null == driverInfo) {
             throw new IllegalArgumentException("Unknown backend " + scheme);
         }

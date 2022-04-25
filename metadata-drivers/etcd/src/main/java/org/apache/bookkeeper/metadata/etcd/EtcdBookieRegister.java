@@ -18,31 +18,22 @@
 
 package org.apache.bookkeeper.metadata.etcd;
 
-import static org.apache.bookkeeper.metadata.etcd.EtcdUtils.msResult;
-
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-
 import io.etcd.jetcd.Lease;
 import io.etcd.jetcd.lease.LeaseKeepAliveResponse;
 import io.etcd.jetcd.support.CloseableClient;
-
 import io.grpc.stub.StreamObserver;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.function.Supplier;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.bookkeeper.bookie.BookieException.MetadataStoreException;
 import org.apache.bookkeeper.common.concurrent.FutureUtils;
 import org.apache.bookkeeper.discover.RegistrationManager.RegistrationListener;
+
+import java.util.concurrent.*;
+import java.util.function.Supplier;
+
+import static org.apache.bookkeeper.metadata.etcd.EtcdUtils.msResult;
 
 /**
  * Register to register a bookie in Etcd.
@@ -67,7 +58,9 @@ class EtcdBookieRegister implements AutoCloseable, Runnable, Supplier<Long> {
     EtcdBookieRegister(Lease leaseClient,
                        long ttlSeconds) {
         this.leaseClient = leaseClient;
-        this.ttlSeconds = ttlSeconds;
+//        this.ttlSeconds = ttlSeconds;
+        log.info("lan.dev.meta.etcd.ttlSeconds:{}",ttlSeconds);
+        this.ttlSeconds=180;
         this.executor = Executors.newSingleThreadScheduledExecutor(
             new ThreadFactoryBuilder()
                 .setNameFormat("bookie-etcd-keepalive-thread")

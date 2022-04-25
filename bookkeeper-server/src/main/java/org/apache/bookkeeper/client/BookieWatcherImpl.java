@@ -266,6 +266,7 @@ class BookieWatcherImpl implements BookieWatcher {
         List<BookieId> socketAddresses;
         PlacementPolicyAdherence isEnsembleAdheringToPlacementPolicy;
         try {
+            //TODO lan.todo quarantinedBookies 为空
             Set<BookieId> quarantinedBookiesSet = quarantinedBookies.asMap().keySet();
             newEnsembleResponse = placementPolicy.newEnsemble(ensembleSize, writeQuorumSize, ackQuorumSize,
                     customMetadata, new HashSet<BookieId>(quarantinedBookiesSet));

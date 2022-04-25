@@ -22,7 +22,7 @@ import io.etcd.jetcd.ByteSequence;
 /**
  * Constants used in the Etcd metadata drivers.
  */
-final class EtcdConstants {
+ final class EtcdConstants {
 
     private EtcdConstants() {}
 

@@ -14,7 +14,6 @@
 
 package org.apache.bookkeeper.metadata.etcd;
 
-import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.bookkeeper.conf.ServerConfiguration;
 import org.apache.bookkeeper.discover.RegistrationManager;
@@ -22,6 +21,8 @@ import org.apache.bookkeeper.meta.MetadataBookieDriver;
 import org.apache.bookkeeper.meta.MetadataDrivers;
 import org.apache.bookkeeper.meta.exceptions.MetadataException;
 import org.apache.bookkeeper.stats.StatsLogger;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Etcd based metadata bookie driver.
@@ -44,6 +45,8 @@ public class EtcdMetadataBookieDriver extends EtcdMetadataDriverBase implements 
     public synchronized MetadataBookieDriver initialize(ServerConfiguration conf,
                                                         StatsLogger statsLogger)
             throws MetadataException {
+        log.info("lan.dev.hello metadata etcd");
+        System.out.println("lan.dev.hello metadata etcd");
         super.initialize(conf, statsLogger);
         this.conf = conf;
         this.statsLogger = statsLogger;

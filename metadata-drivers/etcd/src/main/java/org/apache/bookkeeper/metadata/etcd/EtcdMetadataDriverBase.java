@@ -19,9 +19,6 @@ package org.apache.bookkeeper.metadata.etcd;
 
 import com.google.common.collect.Lists;
 import io.etcd.jetcd.Client;
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.bookkeeper.common.net.ServiceURI;
 import org.apache.bookkeeper.conf.AbstractConfiguration;
@@ -31,6 +28,10 @@ import org.apache.bookkeeper.meta.exceptions.Code;
 import org.apache.bookkeeper.meta.exceptions.MetadataException;
 import org.apache.bookkeeper.stats.StatsLogger;
 import org.apache.commons.configuration.ConfigurationException;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This is a mixin class for supporting etcd based metadata drivers.

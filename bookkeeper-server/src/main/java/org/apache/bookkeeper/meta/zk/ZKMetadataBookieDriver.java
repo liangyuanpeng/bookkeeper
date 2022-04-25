@@ -52,6 +52,7 @@ public class ZKMetadataBookieDriver
     public synchronized MetadataBookieDriver initialize(ServerConfiguration conf,
                                                         StatsLogger statsLogger)
             throws MetadataException {
+        log.info("lan.dev.zk.metadata.store.initialize");
         super.initialize(
             conf,
             statsLogger.scope(BOOKIE_SCOPE),

@@ -602,7 +602,9 @@ public class BookKeeper implements org.apache.bookkeeper.client.api.BookKeeper {
     }
 
     void scheduleBookieHealthCheckIfEnabled(ClientConfiguration conf) {
+        checkForFaultyBookies();
         if (conf.isBookieHealthCheckEnabled()) {
+            checkForFaultyBookies();
             scheduler.scheduleAtFixedRate(new SafeRunnable() {
 
                 @Override

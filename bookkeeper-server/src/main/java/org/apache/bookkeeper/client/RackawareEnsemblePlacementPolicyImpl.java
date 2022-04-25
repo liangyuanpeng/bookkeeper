@@ -707,6 +707,7 @@ public class RackawareEnsemblePlacementPolicyImpl extends TopologyAwareEnsembleP
         if (bookiesToSelectFrom == null) {
             // If the list is null, we need to select from the entire knownBookies set
             wRSelection = this.weightedSelection;
+            LOG.info("lan.dev.ep.rep.knownBookies:{}",knownBookies.keySet());
             bookiesToSelectFrom = new ArrayList<BookieNode>(knownBookies.values());
         }
         if (isWeighted) {
@@ -731,6 +732,8 @@ public class RackawareEnsemblePlacementPolicyImpl extends TopologyAwareEnsembleP
         } else {
             Collections.shuffle(bookiesToSelectFrom);
         }
+
+        LOG.info("lan.dev.ep.rep.bookiesToSelectFrom:{}",bookiesToSelectFrom.size());
 
         BookieNode bookie;
         List<BookieNode> newBookies = new ArrayList<BookieNode>(numBookies);

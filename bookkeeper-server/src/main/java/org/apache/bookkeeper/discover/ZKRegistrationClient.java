@@ -345,6 +345,7 @@ public class ZKRegistrationClient implements RegistrationClient {
      */
     private CompletableFuture<Versioned<Set<BookieId>>> getChildren(String regPath, Watcher watcher) {
         CompletableFuture<Versioned<Set<BookieId>>> future = FutureUtils.createFuture();
+        log.info("lan.dev.zk.getChildren.regPath:{}",regPath);
         zk.getChildren(regPath, watcher, (rc, path, ctx, children, stat) -> {
             if (KeeperException.Code.OK.intValue() != rc) {
                 ZKException zke = new ZKException(KeeperException.create(KeeperException.Code.get(rc), path));

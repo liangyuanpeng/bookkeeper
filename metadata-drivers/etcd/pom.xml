@@ -26,11 +26,22 @@
   <groupId>org.apache.bookkeeper.metadata.drivers</groupId>
   <artifactId>metadata-stores-etcd</artifactId>
   <name>Apache BookKeeper :: Metadata Drivers:: Etcd</name>
+  <version>4.15.0-dev3</version>
+  
+  <properties>
+    <project.version2>4.15.0-SNAPSHOT</project.version2>
+  </properties>
+  
   <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.32</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.bookkeeper</groupId>
       <artifactId>bookkeeper-server</artifactId>
-      <version>${project.version}</version>
+      <version>${project.version2}</version>
     </dependency>
 
     <dependency>
@@ -93,14 +104,14 @@
     <dependency>
       <groupId>org.apache.bookkeeper</groupId>
       <artifactId>bookkeeper-common</artifactId>
-      <version>${project.version}</version>
+      <version>${project.version2}</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.bookkeeper</groupId>
       <artifactId>bookkeeper-server</artifactId>
-      <version>${project.version}</version>
+      <version>${project.version2}</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
@@ -109,13 +120,44 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <!-- 拷贝项目依赖包到lib/目录下 -->
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              <!-- 间接依赖也拷贝 -->
+              <excludeTransitive>false</excludeTransitive>
+              <!-- 带上版本号 -->
+              <stripVersion>false</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <!-- only run tests when -DintegrationTests is specified //-->
           <skipTests>true</skipTests>
           <systemPropertyVariables>
-            <currentVersion>${project.version}</currentVersion>
+            <currentVersion>${project.version2}</currentVersion>
             <maven.buildDirectory>${project.build.directory}</maven.buildDirectory>
           </systemPropertyVariables>
         </configuration>
