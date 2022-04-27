@@ -29,7 +29,7 @@ final class EtcdConstants {
     public static final String END_SEP = "0";
 
     public static final String LAYOUT_NODE = "layout";
-    public static final String INSTANCEID_NODE = "instanceid";
+    public static final String INSTANCEID_NODE = "INSTANCEID";
     public static final String COOKIES_NODE = "cookies";
     public static final String LEDGERS_NODE = "ledgers";
     public static final String BUCKETS_NODE = "buckets";
@@ -38,7 +38,6 @@ final class EtcdConstants {
     // membership related constants
     //
 
-    public static final String MEMBERS_NODE = "bookies";
     public static final String WRITEABLE_NODE = "writable";
     public static final String READONLY_NODE = "readonly";
 

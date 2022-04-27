@@ -24,7 +24,6 @@ import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.END_SEP;
 import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.INSTANCEID_NODE;
 import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.LAYOUT_NODE;
 import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.LEDGERS_NODE;
-import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.MEMBERS_NODE;
 import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.READONLY_NODE;
 import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.UR_NODE;
 import static org.apache.bookkeeper.metadata.etcd.EtcdConstants.WRITEABLE_NODE;
@@ -85,45 +84,45 @@ final class EtcdUtils {
     }
 
     static String getBookiesPath(String scope) {
-        return String.format("%s/%s", scope, MEMBERS_NODE);
+        return String.format("%s", scope);
     }
 
     static String getBookiesEndPath(String scope) {
-        return String.format("%s/%s%s", scope, MEMBERS_NODE, END_SEP);
+        return String.format("%s/%s", scope, END_SEP);
     }
 
     static String getWritableBookiesPath(String scope) {
-        return String.format("%s/%s/%s", scope, MEMBERS_NODE, WRITEABLE_NODE);
+        return String.format("%s/%s", scope, WRITEABLE_NODE);
     }
 
     static String getWritableBookiesBeginPath(String scope) {
-        return String.format("%s/%s/%s/", scope, MEMBERS_NODE, WRITEABLE_NODE);
+        return String.format("%s/%s/", scope, WRITEABLE_NODE);
     }
 
     static String getWritableBookiesEndPath(String scope) {
-        return String.format("%s/%s/%s%s", scope, MEMBERS_NODE, WRITEABLE_NODE, END_SEP);
+        return String.format("%s/%s%s", scope, WRITEABLE_NODE, END_SEP);
     }
 
     static String getWritableBookiePath(String scope, BookieId bookieId) {
-        return String.format("%s/%s/%s/%s",
-            scope, MEMBERS_NODE, WRITEABLE_NODE, bookieId.toString());
+        return String.format("%s/%s/%s",
+            scope, WRITEABLE_NODE, bookieId.toString());
     }
 
     static String getReadonlyBookiesPath(String scope) {
-        return String.format("%s/%s/%s", scope, MEMBERS_NODE, READONLY_NODE);
+        return String.format("%s/%s", scope, READONLY_NODE);
     }
 
     static String getReadonlyBookiesBeginPath(String scope) {
-        return String.format("%s/%s/%s/", scope, MEMBERS_NODE, READONLY_NODE);
+        return String.format("%s/%s/", scope, READONLY_NODE);
     }
 
     static String getReadonlyBookiesEndPath(String scope) {
-        return String.format("%s/%s/%s%s", scope, MEMBERS_NODE, READONLY_NODE, END_SEP);
+        return String.format("%s/%s%s", scope, READONLY_NODE, END_SEP);
     }
 
     static String getReadonlyBookiePath(String scope, BookieId bookieId) {
-        return String.format("%s/%s/%s/%s",
-            scope, MEMBERS_NODE, READONLY_NODE, bookieId.toString());
+        return String.format("%s/%s/%s",
+            scope, READONLY_NODE, bookieId.toString());
     }
 
     static String getCookiesPath(String scope) {
